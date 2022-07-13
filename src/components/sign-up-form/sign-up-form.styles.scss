@@ -1,0 +1,17 @@
+.sign-up-container{
+    display:flex;
+    flex-direction: column;
+    width:24rem;
+    margin: 3rem auto;
+
+    .statusAccount{
+        margin: 0.625rem 0;
+        font-size: 1.5rem;
+    }
+
+    .nav-link{
+        margin: 0.5rem auto;
+        display: block;
+        text-align: center;
+    }
+}
