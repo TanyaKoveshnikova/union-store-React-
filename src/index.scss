@@ -1,10 +1,10 @@
 body {
   margin: 0;
+  padding: 20px 40px;
   font-family: "Gentium Book Plus", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
-  padding: 0;
 }
 
 code {
@@ -12,9 +12,11 @@ code {
     monospace;
 }
 
-a{
+a {
   text-decoration: none;
-  color: black
+  color: black;
 }
 
-*{box-sizing: border-box;}
+* {
+  box-sizing: border-box;
+}

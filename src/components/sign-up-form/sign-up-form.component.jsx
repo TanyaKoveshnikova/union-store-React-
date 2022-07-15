@@ -1,4 +1,4 @@
-import {Fragment,  useState } from "react";
+import { Fragment, useState } from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -35,7 +35,6 @@ const SignUpForm = () => {
         email,
         password
       );
-
       await createUserDocumentFromAuth(user, { displayName });
 
       resetFormFields();

@@ -5,7 +5,6 @@ import "./sign-in-form.styles.scss";
 import Button from "../button/button.component";
 import {
   signInWithGooglePopup,
-  createUserDocumentFromAuth,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
 import { Link } from "react-router-dom";
@@ -18,6 +17,7 @@ const defaultFormFields = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -26,11 +26,11 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      const { user } = await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
+
       resetFormFields();
     } catch (error) {
       switch (error.code) {
@@ -52,8 +52,7 @@ const SignInForm = () => {
   };
 
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
@@ -79,7 +78,7 @@ const SignInForm = () => {
         />
         <div className="navigation-signIn">
           <Button type="submit">Войти</Button>
-          <Button type='button' onClick={signInWithGoogle} buttonType="google">
+          <Button type="button" onClick={signInWithGoogle} buttonType="google">
             Вход с Google
           </Button>
         </div>
