@@ -1,8 +1,8 @@
 import { Fragment, useState } from "react";
 import FormInput from "../form-input/form-input.component";
 import "../sign-up-form/sign-up-form.styles.scss";
-import "./sign-in-form.styles.scss";
-import Button from "../button/button.component";
+import { NavigationSignIn } from "./sign-in-form.styles";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
 import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
@@ -76,12 +76,16 @@ const SignInForm = () => {
           name="password"
           value={password}
         />
-        <div className="navigation-signIn">
+        <NavigationSignIn>
           <Button type="submit">Войти</Button>
-          <Button type="button" onClick={signInWithGoogle} buttonType="google">
+          <Button
+            type="button"
+            onClick={signInWithGoogle}
+            buttonType={BUTTON_TYPES_CLASSES.google}
+          >
             Вход с Google
           </Button>
-        </div>
+        </NavigationSignIn>
         <Fragment>
           <Link className="nav-link" to="/sign-up">
             Зарегистрироваться
