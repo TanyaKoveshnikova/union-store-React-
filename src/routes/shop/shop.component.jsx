@@ -4,9 +4,10 @@ import CategoriesPreview from "../categories-preview/categories-preview.componen
 import { useDispatch } from "react-redux";
 import Category from "../category/category.component";
 import "./shop.styles.scss";
-import axios from "axios";
-import { setCategoriesMap } from "../../store/categories/categories.action";
 
+import { fetchCategoriesAsync } from "../../store/categories/categories.action";
+import { fetchCategoriesSuccess } from "../../store/categories/categories.reducer";
+import axios from "axios";
 const CATEGORIES_SERVICE_URL = "http://localhost:3000/shop_data";
 
 const makeHashCategories = (categoriesMapValue) => {
@@ -17,19 +18,17 @@ const makeHashCategories = (categoriesMapValue) => {
   }, {});
   return categories;
 };
-
 const Shop = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const getCategoriesMap = async () => {
+    async function fff() {
       const result = await axios(CATEGORIES_SERVICE_URL);
-      const hashCategories= makeHashCategories(result.data);
-      dispatch(setCategoriesMap(hashCategories))
-    };
-
-    getCategoriesMap();
-  }, []);
+      const hashCategories = makeHashCategories(result.data);
+      dispatch(fetchCategoriesSuccess(hashCategories));
+    }
+    fff();
+  });
 
   return (
     <Routes>

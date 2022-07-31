@@ -1,5 +1,5 @@
 import { CART_ACTION_TYPES } from "./cart.types";
-import { createAction } from "../utils/reducer/reducer.utils";
+import { createAction } from "../../utils/reducer/reducer.utils";
 
 const addCardItem = (cartItems, productToAdd) => {
   const existingCartItem = cartItems.find(
@@ -41,15 +41,15 @@ export const setIsCartOpen = (boolean) =>
 
 export const addItemToCart = (cartItems, productToAdd) => {
   const newCartItems = addCardItem(cartItems, productToAdd);
-  return createAction( CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
-export const removeItemToCart = (cartItems,productToRemove) => {
+export const removeItemToCart = (cartItems, productToRemove) => {
   const newCartItems = removeCardItem(cartItems, productToRemove);
-  return createAction( CART_ACTION_TYPES.SET_CART_ITEMS,newCartItems);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };
 
 export const clearItemFromCart = (cartItems, cartToClear) => {
   const newCartItems = clearCardItem(cartItems, cartToClear);
-  return createAction( CART_ACTION_TYPES.SET_CART_ITEMS,newCartItems);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, newCartItems);
 };

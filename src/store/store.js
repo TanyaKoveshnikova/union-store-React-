@@ -1,11 +1,15 @@
-import { compose, createStore, applyMiddleware } from "redux";
-import logger from "redux-logger";
+import { configureStore } from "@reduxjs/toolkit";
 
+import { userReducer } from "./user/user.reducer";
+import { cartReducer } from "./cart/cart.reducer";
+import categoriesReducer from "./categories/categories.reducer";
 
-import { rootReducer } from "./root-reducer";
- 
-const middleWares = [logger];
+export const store = configureStore({
+  reducer: {
+    user: userReducer,
+    categories: categoriesReducer,
+    cart: cartReducer,
+  },
+});
 
-const composedEnhacers = compose(applyMiddleware(...middleWares));
-
-export const store = createStore(rootReducer, undefined, composedEnhacers);
+export default store;

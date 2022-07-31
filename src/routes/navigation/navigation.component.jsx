@@ -7,18 +7,16 @@ import {
   LogoContainer,
   NavLinksContainer,
   NavLink,
-  LogoImg
+  LogoImg,
 } from "./navigation.styles";
-import { CartContext } from "../../contexts/cart.context";
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import {selectCurrentUser} from '../../store/user/user.selector'
-
+import { selectCurrentUser } from "../../store/user/user.selector";
+import { selectIsCartOpen } from "../../store/cart/cart.selector";
 const Navigation = () => {
-  const currentUser = useSelector(selectCurrentUser)
-  const { isCartOpen } = useContext(CartContext);
-
+  const currentUser = useSelector(selectCurrentUser);
+  const isCartOpen = useSelector(selectIsCartOpen);
   return (
     <Fragment>
       <NavigationContainer>
@@ -26,17 +24,13 @@ const Navigation = () => {
           <LogoImg src={UnionLogo} alt="union-logo" />
         </LogoContainer>
         <NavLinksContainer>
-          <NavLink to="/shop">
-            МАГАЗИН
-          </NavLink>
+          <NavLink to="/shop">МАГАЗИН</NavLink>
           {currentUser ? (
-            <NavLink as='span' onClick={signOutUser}>
+            <NavLink as="span" onClick={signOutUser}>
               ВЫЙТИ
             </NavLink>
           ) : (
-            <NavLink to="/sign-in">
-              ВОЙТИ
-            </NavLink>
+            <NavLink to="/sign-in">ВОЙТИ</NavLink>
           )}
           <CartIcon />
         </NavLinksContainer>
