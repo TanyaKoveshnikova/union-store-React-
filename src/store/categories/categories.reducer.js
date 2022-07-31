@@ -1,6 +1,11 @@
-import { createReducer, createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
-import CATEGORIES_ACTION_TYPES from "./categories.types";
+import {
+  fetchCategoriesAsync,
+  fetchCategoriesStart,
+  fetchCategoriesSuccess,
+  fetchCategoriesFailed,
+} from "./categories.action";
 
 export const CATEGORIES_INITIAL_STATE = {
   categoriesMap: {},
@@ -8,35 +13,21 @@ export const CATEGORIES_INITIAL_STATE = {
   error: null,
 };
 
-
 const categoriesSlice = createSlice({
   name: "categories",
   initialState: CATEGORIES_INITIAL_STATE,
-  reducers: {
-    fetchCategoriesStart(state, action) {
-      console.log(state);
-      console.log(action);
-      state.isLoading = true;
+  reducers: {},
+  extraReducers: {
+    [fetchCategoriesAsync.pending]: (state) => {
+      fetchCategoriesStart(state);
     },
-    fetchCategoriesSuccess(state, action) {
-      console.log(state);
-      console.log(action);
-      state.categoriesMap = action.payload;
-      state.isLoading = false;
+    [fetchCategoriesAsync.fulfilled]: (state, action) => {
+      fetchCategoriesSuccess(state, action);
     },
-    fetchCategoriesFailed(state, action) {
-      console.log(state);
-      console.log(action);
-      state.error = action.payload;
-      state.isLoading = false;
+    [fetchCategoriesAsync.rejected]: (state, action) => {
+      fetchCategoriesFailed(state, action);
     },
   },
 });
-
-export const {
-  fetchCategoriesStart,
-  fetchCategoriesSuccess,
-  fetchCategoriesFailed,
-} = categoriesSlice.actions;
 
 export default categoriesSlice.reducer;

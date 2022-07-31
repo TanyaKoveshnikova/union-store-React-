@@ -1,18 +1,19 @@
-import { createAction } from "../../utils/reducer/reducer.utils";
 import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-import CATEGORIES_ACTION_TYPES from "./categories.types";
-
-export const fetchCategoriesStart = () => {
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_START);
+export const fetchCategoriesStart = (state) => {
+  state.isLoading = true;
 };
 
-export const fetchCategoriesSuccess = (categoriesMap) => {
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_SUCCESS, categoriesMap);
+export const fetchCategoriesSuccess = (state, action) => {
+  state.categoriesMap = action.payload;
+  state.isLoading = false;
 };
 
-export const fetchCategoriesFailed = (error) => {
-  createAction(CATEGORIES_ACTION_TYPES.FETCH_CATEGORIES_FAILED, error);
+export const fetchCategoriesFailed = (state, action) => {
+  state.error = action.payload;
+  state.isLoading = true;
+  console.log(state.error);
 };
 
 const CATEGORIES_SERVICE_URL = "http://localhost:3000/shop_data";
@@ -26,14 +27,16 @@ const makeHashCategories = (categoriesMapValue) => {
   return categories;
 };
 
-export const fetchCategoriesAsync = () => async (dispatch) => {
-  dispatch(fetchCategoriesStart());
+export const fetchCategoriesAsync = createAsyncThunk(
+  "categories/fetchCategoriesAsync",
+  async function (_, { rejectWithValue }) {
+    try {
+      const result = await axios(CATEGORIES_SERVICE_URL);
+      const hashCategories = await makeHashCategories(result.data);
 
-  try {
-    const result = await axios(CATEGORIES_SERVICE_URL);
-    const hashCategories = makeHashCategories(result.data);
-    dispatch(fetchCategoriesSuccess(hashCategories));
-  } catch (error) {
-    dispatch(fetchCategoriesFailed(error));
+      return hashCategories;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
   }
-};
+);

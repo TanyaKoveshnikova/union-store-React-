@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Fragment, useContext } from "react";
+import { Fragment } from "react";
 import UnionLogo from "../../assets/pngwing.png";
 import {
   NavigationContainer,
@@ -12,10 +12,10 @@ import {
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import { selectCurrentUser } from "../../store/user/user.selector";
 import { selectIsCartOpen } from "../../store/cart/cart.selector";
+
 const Navigation = () => {
-  const currentUser = useSelector(selectCurrentUser);
+  const { currentUser } = useSelector((state) => state.user);
   const isCartOpen = useSelector(selectIsCartOpen);
   return (
     <Fragment>

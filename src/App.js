@@ -1,17 +1,17 @@
 import { Routes, Route } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 import Home from "./routes/home/home.components";
 import Navigation from "./routes/navigation/navigation.component";
 import SignIn from "./routes/sign-in/sign-in.components";
 import SignUp from "./routes/sign-up/sign-up.component";
 import Shop from "./routes/shop/shop.component";
 import CheckoutCart from "./routes/checkout-cart/checkout-cart.component";
-import { useEffect } from "react";
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
 } from "./utils/firebase/firebase.utils";
-import { setCurrentUser } from "./store/user/user.action";
-import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./store/user/user.reducer";
 
 const App = () => {
   const dispatch = useDispatch();
