@@ -1,11 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 
-import { selectCartItems } from "../../store/cart/cart.selector";
 import {
   removeItemToCart,
   addItemToCart,
   clearItemFromCart,
-} from "../../store/cart/cart.action";
+} from "../../store/cart/cart.reducer";
 import {
   CheckoutItemContainer,
   Quantity,
@@ -16,7 +15,6 @@ import {
 const CheckoutItem = ({ cartItem: productActivity }) => {
   const { imageUrl, name, price, quantity } = productActivity;
   const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
 
   return (
     <CheckoutItemContainer>
@@ -27,21 +25,21 @@ const CheckoutItem = ({ cartItem: productActivity }) => {
       <Quantity>
         <span
           className="arrow"
-          onClick={() => dispatch(removeItemToCart(cartItems, productActivity))}
+          onClick={() => dispatch(removeItemToCart(productActivity))}
         >
           &#60;
         </span>
         <div className="value"> {quantity}</div>
         <span
           className="arrow"
-          onClick={() => dispatch(addItemToCart(cartItems, productActivity))}
+          onClick={() => dispatch(addItemToCart(productActivity))}
         >
           &#62;
         </span>
       </Quantity>
       <div className="price">{price * quantity}</div>
       <RemoveButton
-        onClick={() => dispatch(clearItemFromCart(cartItems, productActivity))}
+        onClick={() => dispatch(clearItemFromCart(productActivity))}
       >
         &#10005;
       </RemoveButton>

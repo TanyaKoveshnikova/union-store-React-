@@ -7,16 +7,12 @@ import {
 } from "./cart-dropdown.styles";
 import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
-import { setIsCartOpen } from "../../store/cart/cart.action";
-import {
-  selectCartItems,
-  selectIsCartOpen,
-} from "../../store/cart/cart.selector";
+import { setIsCartOpen } from "../../store/cart/cart.reducer";
+
 
 const CartDropdown = () => {
   const dispatch = useDispatch();
-  const cartItems = useSelector(selectCartItems);
-  const isCartOpen = useSelector(selectIsCartOpen);
+  const {cartItems, isCartOpen} = useSelector((state) => state.cart);
   const toggleIsCartOpen = () => dispatch(setIsCartOpen(!isCartOpen));
   const navigate = useNavigate();
 

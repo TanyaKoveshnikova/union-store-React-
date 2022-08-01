@@ -12,11 +12,10 @@ import {
 import { signOutUser } from "../../utils/firebase/firebase.utils";
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import { selectIsCartOpen } from "../../store/cart/cart.selector";
 
 const Navigation = () => {
   const { currentUser } = useSelector((state) => state.user);
-  const isCartOpen = useSelector(selectIsCartOpen);
+  const { isCartOpen } = useSelector((state) => state.cart);
   return (
     <Fragment>
       <NavigationContainer>
