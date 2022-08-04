@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+
 import { addCardItem, removeCardItem, clearCardItem } from "./cart.action";
+import { CartItem } from "./cart.type";
 
 export const CART_INITIAL_STATE = {
   total: 0,
-  cartItems: [],
+  cartItems: [] as CartItem[],
   isCartOpen: false,
 };
+
 
 const cartSlice = createSlice({
   name: "cart",

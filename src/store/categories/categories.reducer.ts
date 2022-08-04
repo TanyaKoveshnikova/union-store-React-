@@ -17,16 +17,16 @@ const categoriesSlice = createSlice({
   name: "categories",
   initialState: CATEGORIES_INITIAL_STATE,
   reducers: {},
-  extraReducers: {
-    [fetchCategoriesAsync.pending]: (state) => {
+  extraReducers: (builder) => {
+    builder.addCase(fetchCategoriesAsync.pending, (state) => {
       fetchCategoriesStart(state);
-    },
-    [fetchCategoriesAsync.fulfilled]: (state, action) => {
+    });
+    builder.addCase(fetchCategoriesAsync.fulfilled, (state, action) => {
       fetchCategoriesSuccess(state, action);
-    },
-    [fetchCategoriesAsync.rejected]: (state, action) => {
+    });
+    builder.addCase(fetchCategoriesAsync.rejected, (state, action) => {
       fetchCategoriesFailed(state, action);
-    },
+    });
   },
 });
 

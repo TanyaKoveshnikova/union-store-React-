@@ -1,4 +1,4 @@
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   removeItemToCart,
@@ -16,6 +16,10 @@ const CheckoutItem = ({ cartItem: productActivity }) => {
   const { imageUrl, name, price, quantity } = productActivity;
   const dispatch = useDispatch();
 
+  const removeItem = () => dispatch(removeItemToCart(productActivity));
+  const addItem = () => dispatch(addItemToCart(productActivity));
+  const clearItem = () => dispatch(clearItemFromCart(productActivity));
+
   return (
     <CheckoutItemContainer>
       <ImageContainer>
@@ -23,26 +27,16 @@ const CheckoutItem = ({ cartItem: productActivity }) => {
       </ImageContainer>
       <div className="name">{name}</div>
       <Quantity>
-        <span
-          className="arrow"
-          onClick={() => dispatch(removeItemToCart(productActivity))}
-        >
+        <span className="arrow" onClick={removeItem}>
           &#60;
         </span>
         <div className="value"> {quantity}</div>
-        <span
-          className="arrow"
-          onClick={() => dispatch(addItemToCart(productActivity))}
-        >
+        <span className="arrow" onClick={addItem}>
           &#62;
         </span>
       </Quantity>
       <div className="price">{price * quantity}</div>
-      <RemoveButton
-        onClick={() => dispatch(clearItemFromCart(productActivity))}
-      >
-        &#10005;
-      </RemoveButton>
+      <RemoveButton onClick={clearItem}>&#10005;</RemoveButton>
     </CheckoutItemContainer>
   );
 };
