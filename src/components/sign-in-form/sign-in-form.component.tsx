@@ -1,4 +1,7 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, FormEvent, ChangeEvent } from "react";
+import { Link } from "react-router-dom";
+import { AuthError, AuthErrorCodes } from "firebase/auth";
+
 import FormInput from "../form-input/form-input.component";
 import "../sign-up-form/sign-up-form.styles.scss";
 import { NavigationSignIn } from "./sign-in-form.styles";
@@ -7,7 +10,6 @@ import {
   signInWithGooglePopup,
   signInAuthUserWithEmailAndPassword,
 } from "../../utils/firebase/firebase.utils";
-import { Link } from "react-router-dom";
 
 const defaultFormFields = {
   email: "",
@@ -22,18 +24,15 @@ const SignInForm = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInAuthUserWithEmailAndPassword(email, password);
 
       resetFormFields();
-    } catch (error) {
-      switch (error.code) {
+    } catch (error: any) {
+      switch ((error as AuthError).code) {
         case "auth/user-not-found":
           alert("Пользователя с таким email не существует");
           break;
@@ -46,7 +45,7 @@ const SignInForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };

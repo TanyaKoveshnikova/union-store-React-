@@ -1,4 +1,8 @@
-import { Fragment, useState } from "react";
+import { Fragment, useState, FormEvent, ChangeEvent } from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { AuthError, AuthErrorCodes } from "firebase/auth";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -6,7 +10,7 @@ import {
 import FormInput from "../form-input/form-input.component";
 import "./sign-up-form.styles.scss";
 import Button from "../button/button.component";
-import { Link } from "react-router-dom";
+import { setCurrentUser } from "../../store/user/user.reducer";
 
 const defaultFormFields = {
   displayName: "",
@@ -19,11 +23,13 @@ const SignUpForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
 
+  const dispatch = useDispatch();
+
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (password !== confirmPassword) {
@@ -31,15 +37,14 @@ const SignUpForm = () => {
       return;
     }
     try {
-      const { user } = await createAuthUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserDocumentFromAuth(user, { displayName });
+      await createAuthUserWithEmailAndPassword(email, password);
+
+      dispatch(setCurrentUser({ email, password, displayName }));
+      // await createUserDocumentFromAuth(user, { displayName });
 
       resetFormFields();
     } catch (error) {
-      if (error.code === "auth/email-already-in-use") {
+      if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
         alert("Ваш email уже используется");
       } else {
         console.error(error);
@@ -47,7 +52,7 @@ const SignUpForm = () => {
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormFields({ ...formFields, [name]: value });
   };
