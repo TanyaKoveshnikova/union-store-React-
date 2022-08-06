@@ -1,9 +1,11 @@
-import { useSelector } from "react-redux";
 import CategoryPreview from "../../components/category-preview/category-preview.component";
 import Spinner from "../../components/spinner/spinner.component";
+import { useAppSelector } from "../../hook";
 
 const CategoriesPreview = () => {
-  const { isLoading, categoriesMap } = useSelector((state) => state.categories);
+  const { isLoading, categoriesMap } = useAppSelector(
+    (state) => state.categories
+  );
   return (
     <div className="category-preview-container">
       {isLoading ? (

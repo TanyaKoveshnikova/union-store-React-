@@ -1,9 +1,18 @@
-import ProductCard from "../../components/product-card/product-card.component";
-
 import { Link } from "react-router-dom";
+import { CategoryItem } from "../../store/categories/categories.types";
+
+import ProductCard from "../product-card/product-card.component";
 import "./category-preview.styles.scss";
 
-const CategoryPreview = ({ title, products }) => {
+type CategoryPreviewParams = {
+  title: string;
+  products: CategoryItem;
+};
+
+const CategoryPreview: React.FC<CategoryPreviewParams> = ({
+  title,
+  products,
+}) => {
   return (
     <div className="category-preview-container">
       <h2>
@@ -13,8 +22,8 @@ const CategoryPreview = ({ title, products }) => {
       </h2>
       <div className="preview">
         {products
-          .filter((_, idx) => idx < 4)
-          .map((product) => (
+          .filter((_: any, idx: number) => idx < 4)
+          .map((product: CategoryItem) => (
             <ProductCard key={product.id} product={product} />
           ))}
       </div>

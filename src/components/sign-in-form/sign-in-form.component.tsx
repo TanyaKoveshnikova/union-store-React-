@@ -1,6 +1,6 @@
 import { Fragment, useState, FormEvent, ChangeEvent } from "react";
 import { Link } from "react-router-dom";
-import { AuthError, AuthErrorCodes } from "firebase/auth";
+import { AuthError } from "firebase/auth";
 
 import FormInput from "../form-input/form-input.component";
 import "../sign-up-form/sign-up-form.styles.scss";

@@ -6,8 +6,15 @@ import {
   fetchCategoriesSuccess,
   fetchCategoriesFailed,
 } from "./categories.action";
+import { CategoryMap } from "./categories.types";
 
-export const CATEGORIES_INITIAL_STATE = {
+type CategoriesState = {
+  readonly categoriesMap: CategoryMap;
+  readonly isLoading: boolean;
+  readonly error: any;
+};
+
+export const CATEGORIES_INITIAL_STATE: CategoriesState = {
   categoriesMap: {},
   isLoading: false,
   error: null,

@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useAppSelector, useAppDispatch } from "../../hook";
+
 import {
   CartDropdownContainer,
   EmptyMessage,
   CartItems,
 } from "./cart-dropdown.styles";
 import Button from "../button/button.component";
-import CartItem from "../cart-item/cart-item.component";
+import CartItemComponent from "../cart-item/cart-item.component";
 import { setIsCartOpen } from "../../store/cart/cart.reducer";
 
-
 const CartDropdown = () => {
-  const dispatch = useDispatch();
-  const {cartItems, isCartOpen} = useSelector((state) => state.cart);
+  const dispatch = useAppDispatch();
+  const { cartItems, isCartOpen } = useAppSelector((state) => state.cart);
   const toggleIsCartOpen = () => dispatch(setIsCartOpen(!isCartOpen));
   const navigate = useNavigate();
 
@@ -27,7 +27,7 @@ const CartDropdown = () => {
         {cartItems.length === 0 ? (
           <EmptyMessage>Корзина пуста</EmptyMessage>
         ) : (
-          cartItems.map((item) => <CartItem key={item.id} cartItem={item} />)
+          cartItems.map((item) => <CartItemComponent key={item.id} cartItem={item} />)
         )}
       </CartItems>
 

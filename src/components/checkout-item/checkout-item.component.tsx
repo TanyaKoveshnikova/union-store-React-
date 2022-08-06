@@ -1,10 +1,10 @@
-import { useDispatch } from "react-redux";
-
+import { useAppDispatch } from "../../hook";
 import {
   removeItemToCart,
   addItemToCart,
   clearItemFromCart,
 } from "../../store/cart/cart.reducer";
+import { CartItem } from "../../store/cart/cart.type";
 import {
   CheckoutItemContainer,
   Quantity,
@@ -12,9 +12,15 @@ import {
   RemoveButton,
 } from "./checkout-item.styles";
 
-const CheckoutItem = ({ cartItem: productActivity }) => {
+export type CheckoutItemParams = {
+  cartItem: CartItem;
+};
+
+const CheckoutItem: React.FC<CheckoutItemParams> = ({
+  cartItem: productActivity,
+}) => {
   const { imageUrl, name, price, quantity } = productActivity;
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const removeItem = () => dispatch(removeItemToCart(productActivity));
   const addItem = () => dispatch(addItemToCart(productActivity));

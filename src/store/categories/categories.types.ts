@@ -9,6 +9,7 @@ export type CategoryItem = {
   name: string;
   imageUrl: string;
   price: number;
+  filter?: any
 };
 
 export type CategoryItems = {
@@ -17,5 +18,5 @@ export type CategoryItems = {
 };
 
 export type CategoryMap = {
-  [key: string]: CategoryItem[];
+  [key: string]: CategoryItem[] | {} | any;
 };

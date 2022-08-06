@@ -1,6 +1,7 @@
 import "./cart-item.styles.scss";
+import { CheckoutItemParams } from "../checkout-item/checkout-item.component";
 
-const CartItem = ({ cartItem }) => {
+const CartItemComponent: React.FC<CheckoutItemParams> = ({ cartItem }) => {
   const { name, quantity, imageUrl, price } = cartItem;
 
   return (
@@ -15,4 +16,4 @@ const CartItem = ({ cartItem }) => {
     </div>
   );
 };
-export default CartItem;
+export default CartItemComponent;

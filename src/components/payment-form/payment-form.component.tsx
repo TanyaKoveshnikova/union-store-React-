@@ -1,10 +1,11 @@
 import "./payment-form.styles";
-// import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
+import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
+import React from "react";
 
 const PaymentForm = () => {
   return (
     <div>
-      {/* <Button buttonType={BUTTON_TYPES_CLASSES.inverted}>Оплатить</Button> */}
+      <Button buttonType={BUTTON_TYPES_CLASSES.inverted}>Оплатить</Button>
     </div>
   );
 };

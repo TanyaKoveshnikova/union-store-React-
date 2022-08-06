@@ -3,10 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { AuthError, AuthErrorCodes } from "firebase/auth";
 
-import {
-  createAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
-} from "../../utils/firebase/firebase.utils";
+import { createAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import "./sign-up-form.styles.scss";
 import Button from "../button/button.component";

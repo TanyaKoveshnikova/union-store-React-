@@ -1,13 +1,21 @@
 import { useState, useEffect, Fragment } from "react";
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+
 import ProductCard from "../../components/product-card/product-card.component";
 import Spinner from "../../components/spinner/spinner.component";
+import { useAppSelector } from "../../hook";
+import { CategoryItem } from "../../store/categories/categories.types";
 import "./category.styles.scss";
 
+type CategoryRouteParams = {
+  category: string;
+};
+
 const Category = () => {
-  const { category } = useParams();
-  const { isLoading, categoriesMap } = useSelector((state) => state.categories);
+  const { category } = useParams<keyof CategoryRouteParams>() as CategoryRouteParams;
+  const { isLoading, categoriesMap } = useAppSelector(
+    (state) => state.categories
+  );
   const [products, setProducts] = useState(categoriesMap[category]);
 
   useEffect(() => {
@@ -22,7 +30,7 @@ const Category = () => {
       ) : (
         <div className="category-container">
           {products &&
-            products.map((product) => (
+            products.map((product: CategoryItem) => (
               <ProductCard key={product.id} product={product} />
             ))}
         </div>
