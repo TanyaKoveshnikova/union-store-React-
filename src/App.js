@@ -1,17 +1,25 @@
-import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import Home from "./routes/home/home.components";
-import Navigation from "./routes/navigation/navigation.component";
-import SignIn from "./routes/sign-in/sign-in.components";
-import SignUp from "./routes/sign-up/sign-up.component";
-import Shop from "./routes/shop/shop.component";
-import CheckoutCart from "./routes/checkout-cart/checkout-cart.component";
+import { useEffect, lazy, Suspense } from "react";
+
+import { Routes, Route } from "react-router-dom";
+
 import {
   onAuthStateChangedListener,
   createUserDocumentFromAuth,
 } from "./utils/firebase/firebase.utils";
+import Spinner from "./components/spinner/spinner.component";
 import { setCurrentUser } from "./store/user/user.reducer";
+
+const Home = lazy(() => import("./routes/home/home.components"));
+const SignIn = lazy(() => import("./routes/sign-in/sign-in.components"));
+const SignUp = lazy(() => import("./routes/sign-up/sign-up.component"));
+const Shop = lazy(() => import("./routes/shop/shop.component"));
+const CheckoutCart = lazy(() =>
+  import("./routes/checkout-cart/checkout-cart.component")
+);
+const Navigation = lazy(() =>
+  import("./routes/navigation/navigation.component")
+);
 
 const App = () => {
   const dispatch = useDispatch();
@@ -27,15 +35,17 @@ const App = () => {
   }, []);
 
   return (
-    <Routes>
-      <Route path="/" element={<Navigation />}>
-        <Route index element={<Home />} />
-        <Route path="shop/*" element={<Shop />}></Route>
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/checkout" element={<CheckoutCart />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={<Spinner />}>
+      <Routes>
+        <Route path="/" element={<Navigation />}>
+          <Route index element={<Home />} />
+          <Route path="shop/*" element={<Shop />}></Route>
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/checkout" element={<CheckoutCart />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 };
 

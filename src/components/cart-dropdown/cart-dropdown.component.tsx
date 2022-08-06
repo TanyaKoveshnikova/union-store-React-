@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+
 import { useNavigate } from "react-router-dom";
 import { useAppSelector, useAppDispatch } from "../../hook";
 
@@ -11,15 +13,16 @@ import CartItemComponent from "../cart-item/cart-item.component";
 import { setIsCartOpen } from "../../store/cart/cart.reducer";
 
 const CartDropdown = () => {
-  const dispatch = useAppDispatch();
   const { cartItems, isCartOpen } = useAppSelector((state) => state.cart);
-  const toggleIsCartOpen = () => dispatch(setIsCartOpen(!isCartOpen));
   const navigate = useNavigate();
 
-  const goToCheckoutHandler = () => {
+  const dispatch = useAppDispatch();
+  const toggleIsCartOpen = () => dispatch(setIsCartOpen(!isCartOpen));
+
+  const goToCheckoutHandler = useCallback(() => {
     navigate("/checkout");
     toggleIsCartOpen();
-  };
+  }, []);
 
   return (
     <CartDropdownContainer>
@@ -27,7 +30,9 @@ const CartDropdown = () => {
         {cartItems.length === 0 ? (
           <EmptyMessage>Корзина пуста</EmptyMessage>
         ) : (
-          cartItems.map((item) => <CartItemComponent key={item.id} cartItem={item} />)
+          cartItems.map((item) => (
+            <CartItemComponent key={item.id} cartItem={item} />
+          ))
         )}
       </CartItems>
 
