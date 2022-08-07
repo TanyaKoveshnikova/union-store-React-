@@ -1,40 +1,12 @@
 import { Outlet } from "react-router-dom";
 import { Fragment } from "react";
-import UnionLogo from "../../assets/pngwing.png";
-import {
-  NavigationContainer,
-  LogoContainer,
-  NavLinksContainer,
-  NavLink,
-  LogoImg,
-} from "./navigation.styles";
-import { signOutUser } from "../../utils/firebase/firebase.utils";
-import CartIcon from "../../components/cart-icon/cart-icon.component";
-import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
-import { useAppSelector } from "../../hook";
+
+import Header from "../../components/header/header.component";
 
 const Navigation = () => {
-  const { currentUser } = useAppSelector((state) => state.user);
-  const { isCartOpen } = useAppSelector((state) => state.cart);
   return (
     <Fragment>
-      <NavigationContainer>
-        <LogoContainer to="/">
-          <LogoImg src={UnionLogo} alt="union-logo" />
-        </LogoContainer>
-        <NavLinksContainer>
-          <NavLink to="/shop">МАГАЗИН</NavLink>
-          {currentUser ? (
-            <NavLink as="span" onClick={signOutUser}>
-              ВЫЙТИ
-            </NavLink>
-          ) : (
-            <NavLink to="/sign-in">ВОЙТИ</NavLink>
-          )}
-          <CartIcon />
-        </NavLinksContainer>
-        {isCartOpen && <CartDropdown />}
-      </NavigationContainer>
+      <Header />
       <Outlet />
     </Fragment>
   );
