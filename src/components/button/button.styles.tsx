@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../global.styles";
 
 import { SpinnerContainer } from "../spinner/spinner.styles";
 
@@ -21,6 +22,11 @@ export const BaseButton = styled.button`
   justify-content: center;
   margin: auto;
   align-items: center;
+
+  
+  @media ${device.laptopL} {
+    line-height: 1.125rem;
+  }
 
   &:hover {
     background-color: rgb(226, 226, 226);

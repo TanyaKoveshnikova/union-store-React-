@@ -14,7 +14,7 @@ const ProductCard: React.FC<ProductCardParams> = ({ product }) => {
   const addProductToCart = () => dispatch(addItemToCart(product));
   return (
     <ProductCardConteiner>
-      <img src={imageUrl} alt={`${name}`} />
+      <img className="image" src={imageUrl} alt={`${name}`} />
       <Footer>
         <span className="name">{name}</span>
         <span className="cost">{price}</span>

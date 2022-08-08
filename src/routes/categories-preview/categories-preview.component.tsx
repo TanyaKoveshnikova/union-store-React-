@@ -6,6 +6,7 @@ const CategoriesPreview = () => {
   const { isLoading, categoriesMap } = useAppSelector(
     (state) => state.categories
   );
+
   return (
     <div className="category-preview-container">
       {isLoading ? (

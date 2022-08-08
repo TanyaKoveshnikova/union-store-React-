@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../global.styles";
 
 export const ProductCardConteiner = styled.div`
   width: 100%;
@@ -8,22 +9,32 @@ export const ProductCardConteiner = styled.div`
   align-items: center;
   position: relative;
 
+  @media ${device.tablet} {
+    height: 12.5rem;
+  }
+
   img {
     width: 100%;
     height: 95%;
     object-fit: cover;
     margin-bottom: 0.3rem;
   }
+
   button {
     width: 80%;
     opacity: 0.7;
     position: absolute;
     top: 16rem;
     display: none;
+
+    @media ${device.tablet} {
+      top: 7rem;
+      line-height: 1.125rem;
+    }
   }
 
   &:hover {
-    img {
+    .image {
       opacity: 0.8;
     }
 

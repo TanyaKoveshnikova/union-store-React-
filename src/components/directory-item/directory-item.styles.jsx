@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { device } from "../../global.styles";
 
 export const BackgroundImage = styled.div`
   width: 100%;
@@ -20,23 +21,39 @@ export const Body = styled.div`
   opacity: 0.7;
   position: absolute;
 
+  @media ${device.mobileL} {
+    height: 4rem;
+  }
+
   h2 {
     font-weight: bold;
     margin: 0 0.375rem 0;
     font-size: 1.375rem;
     color: #4a4a4a;
     text-transform: uppercase;
+
+    @media ${device.mobileL} {
+      margin-top: 0.2rem;
+      margin-bottom: 0.2rem;
+      font-size: 1rem;
+    }
   }
 
   p {
     font-weight: lighter;
     font-size: 1rem;
+
+    @media ${device.mobileL} {
+      margin: 0;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
   }
 `;
 
 export const DirectoryItemContainer = styled.div`
   min-width: 30%;
-  height: 15rem;
+  height:35vh;
   flex: 1 1 auto;
   display: flex;
   align-items: center;
@@ -44,6 +61,10 @@ export const DirectoryItemContainer = styled.div`
   border: 1px solid black;
   margin: 0 0.46rem 0.98rem;
   overflow: hidden;
+
+  @media ${device.tablet} {
+    min-width: 45%;
+  }
 
   &:hover {
     cursor: pointer;

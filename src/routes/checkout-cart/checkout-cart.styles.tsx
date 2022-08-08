@@ -1,10 +1,17 @@
-.checkout-container {
+import styled from "styled-components";
+import { device } from "../../global.styles";
+
+export const CheckoutContainer = styled.div`
   width: 55%;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 3.125rem auto 0;
+
+  @media ${device.laptopL}{
+    width: 90%;
+  }
 
   .checkout-header {
     width: 100%;
@@ -33,4 +40,4 @@
     font-size: 1.125rem;
     margin: 3.125rem auto;
   }
-}
+`;

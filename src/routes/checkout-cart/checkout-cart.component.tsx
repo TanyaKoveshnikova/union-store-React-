@@ -2,7 +2,7 @@ import {
   selectCartItems,
   selectCartTotal,
 } from "../../store/cart/cart.selector";
-import "./checkout-cart.styles.scss";
+import { CheckoutContainer } from "./checkout-cart.styles";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import { useAppSelector } from "../../hook";
 
@@ -11,7 +11,7 @@ const CheckoutCart = () => {
   const cartTotal = useAppSelector(selectCartTotal);
 
   return (
-    <div className="checkout-container">
+    <CheckoutContainer>
       <div className="checkout-header">
         <div className="header-block">Продукт</div>
         <div className="header-block">Описание</div>
@@ -27,7 +27,7 @@ const CheckoutCart = () => {
       ) : (
         <div className="total">Итого: {cartTotal}</div>
       )}
-    </div>
+    </CheckoutContainer>
   );
 };
 
