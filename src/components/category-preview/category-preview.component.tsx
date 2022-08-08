@@ -15,8 +15,8 @@ const CategoryPreview: React.FC<CategoryPreviewParams> = ({
 }) => {
   return (
     <CategoryPreviewContainer>
-      <h2>
-        <Link className="title" to={title}>
+      <h2 className="title">
+        <Link  to={title}>
           {title.toUpperCase()}
         </Link>
       </h2>

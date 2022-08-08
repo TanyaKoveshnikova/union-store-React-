@@ -23,6 +23,7 @@ export const CategoryPreviewContainer = styled.div`
   .preview {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
     column-gap: 1.25rem;
 
     @media ${device.laptop} {

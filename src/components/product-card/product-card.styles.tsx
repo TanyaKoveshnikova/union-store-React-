@@ -28,10 +28,8 @@ export const ProductCardConteiner = styled.div`
     display: none;
 
     @media ${device.tablet} {
-      display: block;
-      opacity: 0.9;
-      min-width: unset;
-      padding: 0 10px;
+      top: 7rem;
+      line-height: 1.125rem;
     }
   }
 
@@ -43,20 +41,6 @@ export const ProductCardConteiner = styled.div`
     button {
       opacity: 0.85;
       display: flex;
-    }
-  }
-
-  @media ${device.tablet} {
-    width: 40vw;
-
-    &:hover {
-      .image {
-        opacity: unset;
-      }
-
-      button {
-        opacity: unset;
-      }
     }
   }
 `;
