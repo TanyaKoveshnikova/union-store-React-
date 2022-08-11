@@ -5,6 +5,7 @@ import {
 import { CheckoutContainer } from "./checkout-cart.styles";
 import CheckoutItem from "../../components/checkout-item/checkout-item.component";
 import { useAppSelector } from "../../hook";
+import PaymentForm from "../../components/payment-form/payment-form.component";
 
 const CheckoutCart = () => {
   const cartItems = useAppSelector(selectCartItems);
@@ -27,6 +28,7 @@ const CheckoutCart = () => {
       ) : (
         <div className="total">Итого: {cartTotal}</div>
       )}
+      {cartItems.length === 0 ? null : <PaymentForm />}
     </CheckoutContainer>
   );
 };

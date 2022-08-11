@@ -75,6 +75,7 @@ const SignUpForm = () => {
           name="email"
           value={email}
         />
+
         <FormInput
           label="Пароль"
           type="password"
@@ -83,6 +84,7 @@ const SignUpForm = () => {
           name="password"
           value={password}
         />
+        
         <FormInput
           label="Подтвердите пароль"
           type="password"

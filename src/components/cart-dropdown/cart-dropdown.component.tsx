@@ -36,7 +36,9 @@ const CartDropdown = () => {
         )}
       </CartItems>
 
-      <Button onClick={goToCheckoutHandler}>ОФОРМИТЬ</Button>
+      <Button isLoading={false} onClick={goToCheckoutHandler}>
+        ОФОРМИТЬ
+      </Button>
     </CartDropdownContainer>
   );
 };

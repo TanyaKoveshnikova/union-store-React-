@@ -1,5 +1,6 @@
 import { CartItem } from "./cart.type";
 import { CategoryItem } from "../categories/categories.types";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const addCardItem = (
   cartItems: CartItem[],
@@ -41,3 +42,4 @@ export const removeCardItem = (
 export const clearCardItem = (cartItems: CartItem[], cartToClear: CartItem) => {
   return cartItems.filter((cartItem) => cartItem.id !== cartToClear.id);
 };
+

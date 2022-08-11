@@ -1,3 +1,5 @@
+import { FC } from "react";
+
 import { Footer, ProductCardConteiner } from "./product-card.styles";
 import Button, { BUTTON_TYPES_CLASSES } from "../button/button.component";
 import { addItemToCart } from "../../store/cart/cart.reducer";
@@ -8,7 +10,7 @@ type ProductCardParams = {
   product: CategoryItem;
 };
 
-const ProductCard: React.FC<ProductCardParams> = ({ product }) => {
+const ProductCard: FC<ProductCardParams> = ({ product }) => {
   const { name, price, imageUrl } = product;
   const dispatch = useAppDispatch();
   const addProductToCart = () => dispatch(addItemToCart(product));

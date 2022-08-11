@@ -9,7 +9,6 @@ export const CART_INITIAL_STATE = {
   isCartOpen: false,
 };
 
-
 const cartSlice = createSlice({
   name: "cart",
   initialState: CART_INITIAL_STATE,
@@ -32,6 +31,10 @@ const cartSlice = createSlice({
       const newCartItems = clearCardItem(state.cartItems, action.payload);
       state.cartItems = newCartItems;
     },
+
+    clearCart(state) {
+      state.cartItems = [] as CartItem[];
+    },
   },
 });
 
@@ -40,6 +43,7 @@ export const {
   addItemToCart,
   removeItemToCart,
   clearItemFromCart,
+  clearCart,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
