@@ -11,31 +11,31 @@ const categories = [
     id: 1,
     title: "Книги",
     imageUrl: `${books}`,
-    route: "shop/hats",
+    route: "shop/books",
   },
   {
     id: 2,
     title: "Игрушки",
     imageUrl: `${toys}`,
-    route: "shop/sneackers",
+    route: "shop/toys",
   },
   {
     id: 3,
     title: "Аксессуары",
     imageUrl: `${accessories}`,
-    route: "shop/jackets",
+    route: "shop/accessories",
   },
   {
     id: 4,
     title: "Женщинам",
     imageUrl: `${women}`,
-    route: "shop/jackets",
+    route: "shop/women",
   },
   {
     id: 5,
     title: "Мужчинам",
     imageUrl: `${men}`,
-    route: "shop/jackets",
+    route: "shop/men",
   },
 ];
 
@@ -51,4 +51,3 @@ const Directory = () => {
 
 export default Directory;
 
-// TODO: "изменить бд и заменить переходы в категории на нужные"
