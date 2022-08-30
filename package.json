@@ -33,7 +33,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "set PORT=3006 && react-scripts start",
+    "start": "set PORT=4000 && react-scripts start",
     "api": "json-server --watch db.json",
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
