@@ -21,6 +21,5 @@ account, or with a username and password.
 
 ```
 npm install
-yarn start
-json-server --watch db.json
+yarn dev
 ```
