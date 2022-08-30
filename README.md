@@ -14,8 +14,6 @@ In the store, you can see the categories; go to them; add the product to the car
 the cart; enter the card details and pay if you log in to your account. Login is carried out either with a Google
 account, or with a username and password.
 
-**[>> DEMO <<](https://union-shop.netlify.app/)**
-
 ----
 ## Project setup
 
